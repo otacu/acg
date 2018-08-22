@@ -77,7 +77,6 @@
 		<dependency>
 			<groupId>com.egoist</groupId>
 			<artifactId>parent-common</artifactId>
-			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
