@@ -1,8 +1,8 @@
 package com.egoist.acg;
 
 import com.alibaba.fastjson.JSONObject;
-import com.egoist.acg.dao.CartMapper;
-import com.egoist.acg.pojo.Cart;
+import com.egoist.acg.dao.OrderSubMapper;
+import com.egoist.acg.pojo.po.OrderSub;
 import com.egoist.parent.common.utils.http.EgoistOkHttp3Util;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +18,7 @@ import java.util.Map;
 public class AcgServiceApplicationTests {
 
     @Autowired
-    CartMapper cartMapper;
+    OrderSubMapper orderSubMapper;
 
     @Test
     public void contextLoads() {
@@ -39,8 +39,8 @@ public class AcgServiceApplicationTests {
 
     @Test
     public void testMybatis() {
-        Cart cart = cartMapper.selectByPrimaryKey(25L);
-        System.out.println("##########" + JSONObject.toJSONString(cart));
+        OrderSub orderSub = orderSubMapper.selectByPrimaryKey(10000020L);
+        System.out.println("##########" + JSONObject.toJSONString(orderSub));
     }
 
 }

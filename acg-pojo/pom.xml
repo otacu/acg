@@ -11,5 +11,20 @@
 
     <artifactId>acg-pojo</artifactId>
 
+    <properties>
+        <acg.version>1.0.0</acg.version>
+    </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.egoist</groupId>
+            <artifactId>parent-pojo</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.egoist</groupId>
+            <artifactId>acg-common</artifactId>
+            <version>${acg.version}</version>
+        </dependency>
+    </dependencies>
 </project>

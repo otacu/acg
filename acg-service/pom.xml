@@ -73,19 +73,9 @@
 			<artifactId>acg-dao</artifactId>
 			<version>${acg.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.egoist</groupId>
-			<artifactId>acg-common</artifactId>
-			<version>${acg.version}</version>
-		</dependency>
      	<!-- acg end-->
 
-		<dependency>
-			<groupId>com.egoist</groupId>
-			<artifactId>parent-common</artifactId>
-		</dependency>
-
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>

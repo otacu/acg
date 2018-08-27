@@ -1,4 +1,4 @@
-package com.egoist.acg.pojo;
+package com.egoist.acg.pojo.po;
 
 import java.util.Date;
 

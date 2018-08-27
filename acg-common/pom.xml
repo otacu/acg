@@ -16,5 +16,9 @@
 	</parent>
 	
 	<dependencies>
+		<dependency>
+			<groupId>com.egoist</groupId>
+			<artifactId>parent-common</artifactId>
+		</dependency>
 	</dependencies>
 </project>

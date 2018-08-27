@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.egoist.acg.dao.CartMapper">
-  <resultMap id="BaseResultMap" type="com.egoist.acg.pojo.Cart">
+  <resultMap id="BaseResultMap" type="com.egoist.acg.pojo.po.Cart">
     <id column="idx" jdbcType="BIGINT" property="idx" />
     <result column="idx_code" jdbcType="BIGINT" property="idxCode" />
     <result column="user_idx_code" jdbcType="BIGINT" property="userIdxCode" />
@@ -81,7 +81,7 @@
     update_user_idx_code, create_time, update_time, version, ext, remark, item_type, 
     sku_idx_code
   </sql>
-  <select id="selectByExample" parameterType="com.egoist.acg.pojo.CartExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.egoist.acg.pojo.po.CartExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -105,13 +105,13 @@
     delete from tb_cart
     where idx = #{idx,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.egoist.acg.pojo.CartExample">
+  <delete id="deleteByExample" parameterType="com.egoist.acg.pojo.po.CartExample">
     delete from tb_cart
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.egoist.acg.pojo.Cart">
+  <insert id="insert" parameterType="com.egoist.acg.pojo.po.Cart">
     insert into tb_cart (idx, idx_code, user_idx_code, 
       item_idx_code, item_number, status, 
       create_user_idx_code, update_user_idx_code, create_time, 
@@ -125,7 +125,7 @@
       #{remark,jdbcType=VARCHAR}, #{itemType,jdbcType=INTEGER}, #{skuIdxCode,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.egoist.acg.pojo.Cart">
+  <insert id="insertSelective" parameterType="com.egoist.acg.pojo.po.Cart">
     insert into tb_cart
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="idx != null">
@@ -222,7 +222,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.egoist.acg.pojo.CartExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.egoist.acg.pojo.po.CartExample" resultType="java.lang.Long">
     select count(*) from tb_cart
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -302,7 +302,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.egoist.acg.pojo.Cart">
+  <update id="updateByPrimaryKeySelective" parameterType="com.egoist.acg.pojo.po.Cart">
     update tb_cart
     <set>
       <if test="idxCode != null">
@@ -350,7 +350,7 @@
     </set>
     where idx = #{idx,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.egoist.acg.pojo.Cart">
+  <update id="updateByPrimaryKey" parameterType="com.egoist.acg.pojo.po.Cart">
     update tb_cart
     set idx_code = #{idxCode,jdbcType=BIGINT},
       user_idx_code = #{userIdxCode,jdbcType=BIGINT},

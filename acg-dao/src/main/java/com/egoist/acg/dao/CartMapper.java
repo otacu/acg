@@ -1,7 +1,7 @@
 package com.egoist.acg.dao;
 
-import com.egoist.acg.pojo.Cart;
-import com.egoist.acg.pojo.CartExample;
+import com.egoist.acg.pojo.po.Cart;
+import com.egoist.acg.pojo.po.CartExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

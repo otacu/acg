@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.egoist.acg.dao.OrderSubMapper">
+  <resultMap id="BaseResultMap" type="com.egoist.acg.pojo.po.OrderSub">
+    <id column="idx" jdbcType="BIGINT" property="idx" />
+    <result column="idx_code" jdbcType="BIGINT" property="idxCode" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="sub_order_no" jdbcType="VARCHAR" property="subOrderNo" />
+    <result column="order_source" jdbcType="SMALLINT" property="orderSource" />
+    <result column="out_order_status" jdbcType="SMALLINT" property="outOrderStatus" />
+    <result column="order_status" jdbcType="SMALLINT" property="orderStatus" />
+    <result column="total_num" jdbcType="INTEGER" property="totalNum" />
+    <result column="warehouse_no" jdbcType="VARCHAR" property="warehouseNo" />
+    <result column="express_code" jdbcType="VARCHAR" property="expressCode" />
+    <result column="logistics_no" jdbcType="VARCHAR" property="logisticsNo" />
+    <result column="logistics_time" jdbcType="TIMESTAMP" property="logisticsTime" />
+    <result column="dynamic_logistics_time" jdbcType="TIMESTAMP" property="dynamicLogisticsTime" />
+    <result column="order_sale_fee" jdbcType="INTEGER" property="orderSaleFee" />
+    <result column="order_real_fee" jdbcType="INTEGER" property="orderRealFee" />
+    <result column="order_discount_fee" jdbcType="INTEGER" property="orderDiscountFee" />
+    <result column="lock_deduction_fee" jdbcType="INTEGER" property="lockDeductionFee" />
+    <result column="stock_source" jdbcType="SMALLINT" property="stockSource" />
+    <result column="order_classify" jdbcType="SMALLINT" property="orderClassify" />
+    <result column="freight" jdbcType="INTEGER" property="freight" />
+    <result column="weight" jdbcType="INTEGER" property="weight" />
+    <result column="tax" jdbcType="INTEGER" property="tax" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="version" jdbcType="BIGINT" property="version" />
+    <result column="create_user_idx_code" jdbcType="BIGINT" property="createUserIdxCode" />
+    <result column="update_user_idx_code" jdbcType="BIGINT" property="updateUserIdxCode" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="logis_company_name" jdbcType="VARCHAR" property="logisCompanyName" />
+    <result column="shop_no" jdbcType="VARCHAR" property="shopNo" />
+    <result column="cc_tax" jdbcType="INTEGER" property="ccTax" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    idx, idx_code, order_no, sub_order_no, order_source, out_order_status, order_status, 
+    total_num, warehouse_no, express_code, logistics_no, logistics_time, dynamic_logistics_time, 
+    order_sale_fee, order_real_fee, order_discount_fee, lock_deduction_fee, stock_source, 
+    order_classify, freight, weight, tax, remark, status, version, create_user_idx_code, 
+    update_user_idx_code, create_time, update_time, logis_company_name, shop_no, cc_tax
+  </sql>
+  <select id="selectByExample" parameterType="com.egoist.acg.pojo.po.OrderSubExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_order_sub
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_order_sub
+    where idx = #{idx,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_order_sub
+    where idx = #{idx,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.egoist.acg.pojo.po.OrderSubExample">
+    delete from tb_order_sub
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.egoist.acg.pojo.po.OrderSub">
+    insert into tb_order_sub (idx, idx_code, order_no, 
+      sub_order_no, order_source, out_order_status, 
+      order_status, total_num, warehouse_no, 
+      express_code, logistics_no, logistics_time, 
+      dynamic_logistics_time, order_sale_fee, order_real_fee, 
+      order_discount_fee, lock_deduction_fee, stock_source, 
+      order_classify, freight, weight, 
+      tax, remark, status, 
+      version, create_user_idx_code, update_user_idx_code, 
+      create_time, update_time, logis_company_name, 
+      shop_no, cc_tax)
+    values (#{idx,jdbcType=BIGINT}, #{idxCode,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, 
+      #{subOrderNo,jdbcType=VARCHAR}, #{orderSource,jdbcType=SMALLINT}, #{outOrderStatus,jdbcType=SMALLINT}, 
+      #{orderStatus,jdbcType=SMALLINT}, #{totalNum,jdbcType=INTEGER}, #{warehouseNo,jdbcType=VARCHAR}, 
+      #{expressCode,jdbcType=VARCHAR}, #{logisticsNo,jdbcType=VARCHAR}, #{logisticsTime,jdbcType=TIMESTAMP}, 
+      #{dynamicLogisticsTime,jdbcType=TIMESTAMP}, #{orderSaleFee,jdbcType=INTEGER}, #{orderRealFee,jdbcType=INTEGER}, 
+      #{orderDiscountFee,jdbcType=INTEGER}, #{lockDeductionFee,jdbcType=INTEGER}, #{stockSource,jdbcType=SMALLINT}, 
+      #{orderClassify,jdbcType=SMALLINT}, #{freight,jdbcType=INTEGER}, #{weight,jdbcType=INTEGER}, 
+      #{tax,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, 
+      #{version,jdbcType=BIGINT}, #{createUserIdxCode,jdbcType=BIGINT}, #{updateUserIdxCode,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{logisCompanyName,jdbcType=VARCHAR}, 
+      #{shopNo,jdbcType=VARCHAR}, #{ccTax,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.egoist.acg.pojo.po.OrderSub">
+    insert into tb_order_sub
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idx != null">
+        idx,
+      </if>
+      <if test="idxCode != null">
+        idx_code,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="subOrderNo != null">
+        sub_order_no,
+      </if>
+      <if test="orderSource != null">
+        order_source,
+      </if>
+      <if test="outOrderStatus != null">
+        out_order_status,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="totalNum != null">
+        total_num,
+      </if>
+      <if test="warehouseNo != null">
+        warehouse_no,
+      </if>
+      <if test="expressCode != null">
+        express_code,
+      </if>
+      <if test="logisticsNo != null">
+        logistics_no,
+      </if>
+      <if test="logisticsTime != null">
+        logistics_time,
+      </if>
+      <if test="dynamicLogisticsTime != null">
+        dynamic_logistics_time,
+      </if>
+      <if test="orderSaleFee != null">
+        order_sale_fee,
+      </if>
+      <if test="orderRealFee != null">
+        order_real_fee,
+      </if>
+      <if test="orderDiscountFee != null">
+        order_discount_fee,
+      </if>
+      <if test="lockDeductionFee != null">
+        lock_deduction_fee,
+      </if>
+      <if test="stockSource != null">
+        stock_source,
+      </if>
+      <if test="orderClassify != null">
+        order_classify,
+      </if>
+      <if test="freight != null">
+        freight,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="tax != null">
+        tax,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="createUserIdxCode != null">
+        create_user_idx_code,
+      </if>
+      <if test="updateUserIdxCode != null">
+        update_user_idx_code,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="logisCompanyName != null">
+        logis_company_name,
+      </if>
+      <if test="shopNo != null">
+        shop_no,
+      </if>
+      <if test="ccTax != null">
+        cc_tax,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idx != null">
+        #{idx,jdbcType=BIGINT},
+      </if>
+      <if test="idxCode != null">
+        #{idxCode,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="subOrderNo != null">
+        #{subOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSource != null">
+        #{orderSource,jdbcType=SMALLINT},
+      </if>
+      <if test="outOrderStatus != null">
+        #{outOrderStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="totalNum != null">
+        #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseNo != null">
+        #{warehouseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCode != null">
+        #{expressCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsNo != null">
+        #{logisticsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsTime != null">
+        #{logisticsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dynamicLogisticsTime != null">
+        #{dynamicLogisticsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderSaleFee != null">
+        #{orderSaleFee,jdbcType=INTEGER},
+      </if>
+      <if test="orderRealFee != null">
+        #{orderRealFee,jdbcType=INTEGER},
+      </if>
+      <if test="orderDiscountFee != null">
+        #{orderDiscountFee,jdbcType=INTEGER},
+      </if>
+      <if test="lockDeductionFee != null">
+        #{lockDeductionFee,jdbcType=INTEGER},
+      </if>
+      <if test="stockSource != null">
+        #{stockSource,jdbcType=SMALLINT},
+      </if>
+      <if test="orderClassify != null">
+        #{orderClassify,jdbcType=SMALLINT},
+      </if>
+      <if test="freight != null">
+        #{freight,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="tax != null">
+        #{tax,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=BIGINT},
+      </if>
+      <if test="createUserIdxCode != null">
+        #{createUserIdxCode,jdbcType=BIGINT},
+      </if>
+      <if test="updateUserIdxCode != null">
+        #{updateUserIdxCode,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logisCompanyName != null">
+        #{logisCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopNo != null">
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ccTax != null">
+        #{ccTax,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.egoist.acg.pojo.po.OrderSubExample" resultType="java.lang.Long">
+    select count(*) from tb_order_sub
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_order_sub
+    <set>
+      <if test="record.idx != null">
+        idx = #{record.idx,jdbcType=BIGINT},
+      </if>
+      <if test="record.idxCode != null">
+        idx_code = #{record.idxCode,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderNo != null">
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subOrderNo != null">
+        sub_order_no = #{record.subOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderSource != null">
+        order_source = #{record.orderSource,jdbcType=SMALLINT},
+      </if>
+      <if test="record.outOrderStatus != null">
+        out_order_status = #{record.outOrderStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="record.orderStatus != null">
+        order_status = #{record.orderStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="record.totalNum != null">
+        total_num = #{record.totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.warehouseNo != null">
+        warehouse_no = #{record.warehouseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressCode != null">
+        express_code = #{record.expressCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logisticsNo != null">
+        logistics_no = #{record.logisticsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logisticsTime != null">
+        logistics_time = #{record.logisticsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dynamicLogisticsTime != null">
+        dynamic_logistics_time = #{record.dynamicLogisticsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderSaleFee != null">
+        order_sale_fee = #{record.orderSaleFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderRealFee != null">
+        order_real_fee = #{record.orderRealFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderDiscountFee != null">
+        order_discount_fee = #{record.orderDiscountFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.lockDeductionFee != null">
+        lock_deduction_fee = #{record.lockDeductionFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.stockSource != null">
+        stock_source = #{record.stockSource,jdbcType=SMALLINT},
+      </if>
+      <if test="record.orderClassify != null">
+        order_classify = #{record.orderClassify,jdbcType=SMALLINT},
+      </if>
+      <if test="record.freight != null">
+        freight = #{record.freight,jdbcType=INTEGER},
+      </if>
+      <if test="record.weight != null">
+        weight = #{record.weight,jdbcType=INTEGER},
+      </if>
+      <if test="record.tax != null">
+        tax = #{record.tax,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=SMALLINT},
+      </if>
+      <if test="record.version != null">
+        version = #{record.version,jdbcType=BIGINT},
+      </if>
+      <if test="record.createUserIdxCode != null">
+        create_user_idx_code = #{record.createUserIdxCode,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateUserIdxCode != null">
+        update_user_idx_code = #{record.updateUserIdxCode,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.logisCompanyName != null">
+        logis_company_name = #{record.logisCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopNo != null">
+        shop_no = #{record.shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ccTax != null">
+        cc_tax = #{record.ccTax,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_order_sub
+    set idx = #{record.idx,jdbcType=BIGINT},
+      idx_code = #{record.idxCode,jdbcType=BIGINT},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      sub_order_no = #{record.subOrderNo,jdbcType=VARCHAR},
+      order_source = #{record.orderSource,jdbcType=SMALLINT},
+      out_order_status = #{record.outOrderStatus,jdbcType=SMALLINT},
+      order_status = #{record.orderStatus,jdbcType=SMALLINT},
+      total_num = #{record.totalNum,jdbcType=INTEGER},
+      warehouse_no = #{record.warehouseNo,jdbcType=VARCHAR},
+      express_code = #{record.expressCode,jdbcType=VARCHAR},
+      logistics_no = #{record.logisticsNo,jdbcType=VARCHAR},
+      logistics_time = #{record.logisticsTime,jdbcType=TIMESTAMP},
+      dynamic_logistics_time = #{record.dynamicLogisticsTime,jdbcType=TIMESTAMP},
+      order_sale_fee = #{record.orderSaleFee,jdbcType=INTEGER},
+      order_real_fee = #{record.orderRealFee,jdbcType=INTEGER},
+      order_discount_fee = #{record.orderDiscountFee,jdbcType=INTEGER},
+      lock_deduction_fee = #{record.lockDeductionFee,jdbcType=INTEGER},
+      stock_source = #{record.stockSource,jdbcType=SMALLINT},
+      order_classify = #{record.orderClassify,jdbcType=SMALLINT},
+      freight = #{record.freight,jdbcType=INTEGER},
+      weight = #{record.weight,jdbcType=INTEGER},
+      tax = #{record.tax,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=SMALLINT},
+      version = #{record.version,jdbcType=BIGINT},
+      create_user_idx_code = #{record.createUserIdxCode,jdbcType=BIGINT},
+      update_user_idx_code = #{record.updateUserIdxCode,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      logis_company_name = #{record.logisCompanyName,jdbcType=VARCHAR},
+      shop_no = #{record.shopNo,jdbcType=VARCHAR},
+      cc_tax = #{record.ccTax,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.egoist.acg.pojo.po.OrderSub">
+    update tb_order_sub
+    <set>
+      <if test="idxCode != null">
+        idx_code = #{idxCode,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="subOrderNo != null">
+        sub_order_no = #{subOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSource != null">
+        order_source = #{orderSource,jdbcType=SMALLINT},
+      </if>
+      <if test="outOrderStatus != null">
+        out_order_status = #{outOrderStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="totalNum != null">
+        total_num = #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseNo != null">
+        warehouse_no = #{warehouseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCode != null">
+        express_code = #{expressCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsNo != null">
+        logistics_no = #{logisticsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsTime != null">
+        logistics_time = #{logisticsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dynamicLogisticsTime != null">
+        dynamic_logistics_time = #{dynamicLogisticsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderSaleFee != null">
+        order_sale_fee = #{orderSaleFee,jdbcType=INTEGER},
+      </if>
+      <if test="orderRealFee != null">
+        order_real_fee = #{orderRealFee,jdbcType=INTEGER},
+      </if>
+      <if test="orderDiscountFee != null">
+        order_discount_fee = #{orderDiscountFee,jdbcType=INTEGER},
+      </if>
+      <if test="lockDeductionFee != null">
+        lock_deduction_fee = #{lockDeductionFee,jdbcType=INTEGER},
+      </if>
+      <if test="stockSource != null">
+        stock_source = #{stockSource,jdbcType=SMALLINT},
+      </if>
+      <if test="orderClassify != null">
+        order_classify = #{orderClassify,jdbcType=SMALLINT},
+      </if>
+      <if test="freight != null">
+        freight = #{freight,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="tax != null">
+        tax = #{tax,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=BIGINT},
+      </if>
+      <if test="createUserIdxCode != null">
+        create_user_idx_code = #{createUserIdxCode,jdbcType=BIGINT},
+      </if>
+      <if test="updateUserIdxCode != null">
+        update_user_idx_code = #{updateUserIdxCode,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logisCompanyName != null">
+        logis_company_name = #{logisCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopNo != null">
+        shop_no = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ccTax != null">
+        cc_tax = #{ccTax,jdbcType=INTEGER},
+      </if>
+    </set>
+    where idx = #{idx,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.egoist.acg.pojo.po.OrderSub">
+    update tb_order_sub
+    set idx_code = #{idxCode,jdbcType=BIGINT},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      sub_order_no = #{subOrderNo,jdbcType=VARCHAR},
+      order_source = #{orderSource,jdbcType=SMALLINT},
+      out_order_status = #{outOrderStatus,jdbcType=SMALLINT},
+      order_status = #{orderStatus,jdbcType=SMALLINT},
+      total_num = #{totalNum,jdbcType=INTEGER},
+      warehouse_no = #{warehouseNo,jdbcType=VARCHAR},
+      express_code = #{expressCode,jdbcType=VARCHAR},
+      logistics_no = #{logisticsNo,jdbcType=VARCHAR},
+      logistics_time = #{logisticsTime,jdbcType=TIMESTAMP},
+      dynamic_logistics_time = #{dynamicLogisticsTime,jdbcType=TIMESTAMP},
+      order_sale_fee = #{orderSaleFee,jdbcType=INTEGER},
+      order_real_fee = #{orderRealFee,jdbcType=INTEGER},
+      order_discount_fee = #{orderDiscountFee,jdbcType=INTEGER},
+      lock_deduction_fee = #{lockDeductionFee,jdbcType=INTEGER},
+      stock_source = #{stockSource,jdbcType=SMALLINT},
+      order_classify = #{orderClassify,jdbcType=SMALLINT},
+      freight = #{freight,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=INTEGER},
+      tax = #{tax,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=SMALLINT},
+      version = #{version,jdbcType=BIGINT},
+      create_user_idx_code = #{createUserIdxCode,jdbcType=BIGINT},
+      update_user_idx_code = #{updateUserIdxCode,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      logis_company_name = #{logisCompanyName,jdbcType=VARCHAR},
+      shop_no = #{shopNo,jdbcType=VARCHAR},
+      cc_tax = #{ccTax,jdbcType=INTEGER}
+    where idx = #{idx,jdbcType=BIGINT}
+  </update>
+</mapper>
