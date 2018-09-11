@@ -18,22 +18,24 @@
 	</parent>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
 		<acg.version>1.0.0</acg.version>
 	</properties>
 
 	<dependencies>
+
+		<!-- acg begin-->
+		<dependency>
+			<groupId>com.egoist</groupId>
+			<artifactId>acg-dao</artifactId>
+			<version>${acg.version}</version>
+		</dependency>
+     	<!-- acg end-->
 		<!--spring-boot begin-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
@@ -66,25 +68,6 @@
 			<scope>runtime</scope>
 		</dependency>
 		<!--mysql end-->
-
-		<!-- acg begin-->
-		<dependency>
-			<groupId>com.egoist</groupId>
-			<artifactId>acg-dao</artifactId>
-			<version>${acg.version}</version>
-		</dependency>
-     	<!-- acg end-->
-
     </dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
 
 </project>

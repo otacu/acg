@@ -15,7 +15,7 @@ import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AcgServiceApplicationTests {
+public class AcgWebApplicationTests {
 
     @Autowired
     OrderSubMapper orderSubMapper;

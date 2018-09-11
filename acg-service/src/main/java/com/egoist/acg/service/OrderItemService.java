@@ -6,4 +6,6 @@ public interface OrderItemService {
     EgoistResult queryByIdx(Long idx);
 
     EgoistResult queryBySubOrderNo(String subOrderNo);
+
+    EgoistResult packageIndexDoc(Long subOrderIdx, String subOrderNo);
 }

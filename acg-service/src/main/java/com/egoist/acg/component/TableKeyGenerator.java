@@ -1,6 +1,5 @@
 package com.egoist.acg.component;
 
-import com.egoist.parent.common.annotation.EgoistTimeRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.support.atomic.RedisAtomicLong;
@@ -24,8 +23,4 @@ public class TableKeyGenerator {
         return counter.incrementAndGet();
     }
 
-    @EgoistTimeRecorder(desc = "TableKeyGenerator.test")
-    public void test(){
-
-    }
 }

@@ -12,7 +12,9 @@ import com.egoist.parent.pojo.dto.EgoistResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderSubServiceImpl implements OrderSubService {
@@ -31,5 +33,26 @@ public class OrderSubServiceImpl implements OrderSubService {
             return new EgoistResult(EgoistResultStatusConstants.STATUS_400, EgoistErrorMsgConstant.MESSAGE_QUERY_ERROR, null);
         }
         return EgoistResult.ok(list.get(0));
+    }
+
+    @Override
+    public EgoistResult packageIndexDocByIdx(Long idx) {
+        EgoistResult queryResult = this.queryByIdx(idx);
+        if (queryResult.getStatus() != EgoistResultStatusConstants.STATUS_200) {
+            return new EgoistResult(EgoistResultStatusConstants.STATUS_400, EgoistErrorMsgConstant.MESSAGE_QUERY_ERROR, null);
+        }
+        OrderSub orderSub = (OrderSub) queryResult.getData();
+        Map<String, Object> properties = convertToDoc(orderSub);
+        return EgoistResult.ok(properties);
+    }
+
+    private Map<String, Object> convertToDoc(OrderSub orderSub) {
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("idx", orderSub.getIdx());
+        properties.put("subOrderNo", orderSub.getSubOrderNo());
+        properties.put("orderSource", orderSub.getOrderSource());
+        properties.put("orderStatus", orderSub.getOrderStatus());
+        properties.put("join_field", "order_sub");
+        return properties;
     }
 }
